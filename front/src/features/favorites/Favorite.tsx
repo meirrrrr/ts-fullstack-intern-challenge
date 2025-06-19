@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import CatGrid from "../../components/shared/catsGrid/CatsGrid";
 import { RootState } from "../../store/store";
+import styles from "./Favorite.module.css";
 
 export default function Favorite() {
   const likedCats = useSelector((state: RootState) => state.likes.likedCatData);
@@ -10,7 +11,7 @@ export default function Favorite() {
   }
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+    <div className={styles.gridContainer}>
       <CatGrid cats={likedCats} />
     </div>
   );

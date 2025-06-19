@@ -5,8 +5,8 @@ export const getLikes = async () => {
   return res.data.data;
 };
 
-export const likeCat = async (cat_id: string) => {
-  const res = await axiosInstance.post("/likes", { cat_id });
+export const likeCat = async (cat_id: string, url: string) => {
+  const res = await axiosInstance.post("/likes", { cat_id, url });
   return res.data;
 };
 

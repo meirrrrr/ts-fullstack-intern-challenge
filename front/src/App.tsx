@@ -2,12 +2,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { AppDispatch } from "./store/store";
-import AppRoutes from "./routes";
-
 import { fetchCats } from "./redux/catSlice";
 import { fetchLikes } from "./redux/likesSlice";
-
 import { registerUser } from "./api/registerUser";
+import AppRoutes from "./routes";
 
 export default function App() {
   const dispatch = useDispatch<AppDispatch>();

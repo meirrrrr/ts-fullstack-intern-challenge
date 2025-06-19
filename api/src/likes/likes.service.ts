@@ -12,11 +12,11 @@ export class LikesService {
     return this.repo.find({ where: { user } });
   }
 
-  async createLike(cat_id: string, user: User) {
+  async createLike(cat_id: string, url: string, user: User) {
     const existing = await this.repo.findOne({ where: { cat_id, user } });
     if (existing) throw new Error('Already liked');
 
-    const like = this.repo.create({ cat_id, user });
+    const like = this.repo.create({ cat_id, url, user });
     return this.repo.save(like);
   }
 

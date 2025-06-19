@@ -24,8 +24,8 @@ export class LikesController {
   }
 
   @Post()
-  async create(@Body() body: { cat_id: string }, @Req() req) {
-    return await this.likesService.createLike(body.cat_id, req.user);
+  async create(@Body() body: { cat_id: string; url: string }, @Req() req) {
+    return await this.likesService.createLike(body.cat_id, body.url, req.user);
   }
 
   @Delete(':cat_id')

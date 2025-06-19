@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getLikes, likeCat, unlikeCat } from "../api/likes";
 import { CatItem } from "../types/types";
 
-import { fetchCatById } from "../api/cats";
-
 interface LikesState {
   likedCats: string[];
   likedCatData: CatItem[];
@@ -21,11 +19,11 @@ export const fetchLikes = createAsyncThunk(
   async (_arg, thunkAPI) => {
     try {
       const data = await getLikes();
-      const catIds = data.map((like: any) => like.cat_id);
-
-      const cats = await Promise.all(
-        catIds.map((id: string) => fetchCatById(id))
-      );
+      const cats = data.map((like: any) => ({
+        id: like.cat_id,
+        url: like.url,
+      }));
+      const catIds = cats.map((cat: CatItem) => cat.id);
 
       return { catIds, cats };
     } catch (error: any) {
@@ -38,7 +36,7 @@ export const addLike = createAsyncThunk(
   "likes/add",
   async (cat: CatItem, thunkAPI) => {
     try {
-      await likeCat(cat.id);
+      await likeCat(cat.id, cat.url);
       return cat;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(

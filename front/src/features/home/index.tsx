@@ -19,8 +19,8 @@ export default function Home() {
   if (status === "failed") return <ErrorMessage message={error} />;
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+    <>
       <CatGrid cats={cats} />
-    </div>
+    </>
   );
 }

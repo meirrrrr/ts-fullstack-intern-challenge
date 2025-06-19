@@ -15,6 +15,9 @@ export class Like {
   @Column()
   cat_id: string;
 
+  @Column()
+  url: string;
+
   @CreateDateColumn()
   created_at: Date;
 

@@ -7,7 +7,7 @@ export default function Favorite() {
   const likedCats = useSelector((state: RootState) => state.likes.likedCatData);
 
   if (!likedCats.length) {
-    return <p style={{ padding: "1rem" }}>You haven't liked any cats yet 🐱</p>;
+    return <div>... загружаем любимых котиков ...</div>;
   }
 
   return (

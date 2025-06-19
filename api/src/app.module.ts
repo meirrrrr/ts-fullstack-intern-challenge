@@ -5,25 +5,16 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { LikesModule } from './likes/likes.module';
 
-// type: 'postgres',
-//       host: 'cat-pinterest-api-pg',
-//       port: 5432,
-//       username: 'postgres',
-//       password: '1',
-//       database: 'support_lk_db',
-//       synchronize: true,
-//       autoLoadEntities: true,
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'cat-pinterest-api-pg',
       port: 5432,
       username: 'postgres',
-      password: '2004',
-      database: 'cat_service',
+      password: '1',
+      database: 'support_lk_db',
       synchronize: true,
       autoLoadEntities: true,
     }),

@@ -32,3 +32,29 @@
   transition: transform 0.2s ease, opacity 0.2s ease;
   opacity: 1;
 }
+
+@media (max-width: 1024px) {
+  .catCard:hover {
+    transform: scale(1.08);
+  }
+
+  .heartIcon {
+    top: 140px;
+    right: 12px;
+    width: 34px;
+    height: 31px;
+  }
+}
+
+@media (max-width: 600px) {
+  .catCard:hover {
+    transform: scale(1.05);
+  }
+
+  .heartIcon {
+    top: 110px;
+    right: 10px;
+    width: 28px;
+    height: 26px;
+  }
+}

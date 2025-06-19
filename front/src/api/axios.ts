@@ -5,7 +5,7 @@ export const catsApiInstance = axios.create({
 });
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: "http://localhost:8080/api/",
 });
 
 axiosInstance.interceptors.request.use((config) => {

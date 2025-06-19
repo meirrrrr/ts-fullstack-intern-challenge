@@ -37,8 +37,8 @@ const catsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCats.fulfilled, (state, action) => {
+        state.items = [...state.items, ...action.payload];
         state.status = "succeeded";
-        state.items = action.payload;
       })
       .addCase(fetchCats.rejected, (state, action) => {
         state.status = "failed";

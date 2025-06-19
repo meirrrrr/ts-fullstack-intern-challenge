@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { AppDispatch } from "./store/store";
+import AppRoutes from "./routes";
+
+import { fetchCats } from "./redux/catSlice";
+import { fetchLikes } from "./redux/likesSlice";
+
+import { registerUser } from "./api/registerUser";
+
+export default function App() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    const token = localStorage.getItem("auth_token");
+    if (!token) {
+      const randomLogin = "user_" + Date.now();
+      registerUser(randomLogin, "123456")
+        .then(() => console.log("User registered"))
+        .catch((err) => console.error("Failed to register user:", err));
+    }
+
+    dispatch(fetchCats(15));
+    dispatch(fetchLikes());
+  }, [dispatch]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <AppRoutes />
+    </div>
+  );
 }
-
-export default App

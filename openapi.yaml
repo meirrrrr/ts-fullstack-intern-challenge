@@ -11,13 +11,13 @@ paths:
   /likes:
     get:
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       tags:
         - cats
       summary: Список лайков
       operationId: listLikes
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
@@ -27,7 +27,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Like'
+                      $ref: "#/components/schemas/Like"
     post:
       security:
         - bearerAuth: []
@@ -40,21 +40,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Like'
+              $ref: "#/components/schemas/Like"
         required: true
       responses:
-        '201':
+        "201":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Like'
-        '405':
+                $ref: "#/components/schemas/Like"
+        "405":
           description: Invalid input
   /likes/{cat_id}:
     delete:
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       tags:
         - cats
       summary: Удаление лайка
@@ -67,9 +67,9 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '404':
+        "404":
           description: Like not found
   /user:
     post:
@@ -82,10 +82,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
         required: true
       responses:
-        '201':
+        "201":
           description: Successful operation
           headers:
             X-Auth-Token:
@@ -96,8 +96,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-        '405':
+                $ref: "#/components/schemas/User"
+        "405":
           description: Invalid input
 
 components:
@@ -134,4 +134,3 @@ components:
         password:
           type: string
           description: Пароль пользователя
-

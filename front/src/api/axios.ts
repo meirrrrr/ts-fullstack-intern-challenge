@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const API_KEY =
+  "live_LPSKueMvMxePXWmuh2AYbpz2VOtOzQB3yc2BJnt5MJ0LYurRlSApO8z7uHbrnsSw";
+
 export const catsApiInstance = axios.create({
   baseURL: "https://api.thecatapi.com/v1",
+  params: {
+    api_key: API_KEY,
+  },
 });
 
 export const axiosInstance = axios.create({

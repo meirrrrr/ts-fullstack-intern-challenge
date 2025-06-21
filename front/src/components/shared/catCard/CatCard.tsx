@@ -4,10 +4,10 @@ import { useState } from "react";
 import { CatItem } from "../../../types/types";
 import { RootState, AppDispatch } from "../../../store/store";
 import { addLike, removeLike } from "../../../redux/likesSlice";
-
-import styles from "./CatCard.module.css";
 import full_heart from "../../../assets/full_heart.svg";
 import outlined_heart from "../../../assets/outlined_heart.svg";
+
+import styles from "./CatCard.module.css";
 
 type CatCardProps = {
   cat: CatItem;

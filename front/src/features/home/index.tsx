@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../store/store";
 
@@ -18,18 +18,12 @@ export default function Home() {
 
   const [loadingMore, setLoadingMore] = useState(false);
 
-  useEffect(() => {
-    if (cats.length === 0) {
-      dispatch(fetchCats(15));
-    }
-  }, [dispatch, cats.length]);
+  const handleLoadMore = useCallback(() => {
+    if (loadingMore) return;
 
-  const handleLoadMore = () => {
-    if (!loadingMore) {
-      setLoadingMore(true);
-      dispatch(fetchCats(15)).finally(() => setLoadingMore(false));
-    }
-  };
+    setLoadingMore(true);
+    dispatch(fetchCats(15)).finally(() => setLoadingMore(false));
+  }, [dispatch, loadingMore]);
 
   if (status === "loading" && cats.length === 0) {
     return <SkeletonGrid count={15} />;

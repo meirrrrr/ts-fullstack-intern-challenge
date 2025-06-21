@@ -1,11 +1,7 @@
 import { useEffect, useRef } from "react";
 import CatCard from "../catCard/CatCard";
 import styles from "./CatsGrid.module.css";
-
-type CatItem = {
-  id: string;
-  url: string;
-};
+import { CatItem } from "../../../types/types";
 
 type CatGridProps = {
   cats: CatItem[];
@@ -21,7 +17,8 @@ export default function CatGrid({
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!loaderRef.current || !onLoadMore) return;
+    const loader = loaderRef.current;
+    if (!loader || !onLoadMore) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,14 +31,9 @@ export default function CatGrid({
       }
     );
 
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current);
-    }
-
+    observer.observe(loader);
     return () => {
-      if (loaderRef.current) {
-        observer.unobserve(loaderRef.current);
-      }
+      observer.unobserve(loader);
     };
   }, [onLoadMore]);
 
